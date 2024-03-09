@@ -1,123 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog website</title>
     <style>
-       body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(200deg,  #A1C4FD , #C2E9FB);
-    color: #333;
-    
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(200deg, #A1C4FD, #C2E9FB);
+            color: #333;
+        }
+        .container {
+            padding: 20px;
 
-.container {
-    padding: 20px;
-    
-    background-color:rgb(216, 235, 251);
-    max-width: 960px;
-    margin: 20px auto;
-    border-radius: 5px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.header h1 {
-    color: #333;
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.header p {
-    color: #666;
-    font-size: 18px;
-}
-
-.buttons {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.button {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.button.write {
-    background-color: #6c5ce7; 
-}
-
-.button.logout {
-    background-color: #d63031; 
-}
-
-.button.write:hover, .button.logout:hover {
-    opacity: 0.8;
-}
-
-.blog-container {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.blog {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.blog h2 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.blog p {
-    color: #666;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.read-more {
-    display: inline-block;
-    color: #6c5ce7;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.read-more:hover {
-    color: #542c85;
-}
-.blog-box{
-  padding: 20px;
-    background-color:#f4f4f4;
-    max-width: 960px;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-       
+            background-color: rgb(216, 235, 251);
+            max-width: 960px;
+            margin: 20px auto;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #666;
+            font-size: 18px;
+        }
+        .buttons {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .button.write {
+            background-color: #6c5ce7;
+        }
+        .button.logout {
+            background-color: #d63031;
+        }
+        .button.write:hover,
+        .button.logout:hover {
+            opacity: 0.8;
+        }
+        .blog-container {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .blog {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .blog p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .read-more {
+            display: inline-block;
+            color: #6c5ce7;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .read-more:hover {
+            color: #542c85;
+        }
+        .blog-box {
+            padding: 20px;
+            background-color: #f4f4f4;
+            max-width: 960px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -125,13 +110,13 @@
             <p>Express yourself creatively</p>
         </div>
         <div class="buttons">
-          <button id="createBlog" class="button write">Write a Blog</button>
-          <button id="logout" class="button logout">Logout</button>
-      </div>
-     
-      <div class="blog-box">
-        { readmore }
-      </div>
+            <button id="createBlog" class="button write">Write a Blog</button>
+            <button id="logout" class="button logout">Logout</button>
+        </div>
+
+        <div class="blog-box">
+            { readmore }
+        </div>
     </div>
     <script>
         document.getElementById('logout').addEventListener('click', () => {
@@ -140,9 +125,10 @@
         document.getElementById('createBlog').addEventListener('click', () => {
             window.location.href = '/createBlog';
         })
-        document.getElementById('readmore').addEventListener('click', ()=>{
+        document.getElementById('readmore').addEventListener('click', () => {
             window.location.href = '/selectedPost';
         });
     </script>
 </body>
+
 </html>

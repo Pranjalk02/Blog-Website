@@ -1,16 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const dotenv = require("dotenv");
 
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-const PORT = 3000 || process.env.port;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://{your_username}:{your_password}@cluster0.7xtwenm.mongodb.net/";
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: true
 }));
+
 const isAuthenticated = (req, res, next) => {
     if (req.session.user) {
       next();
@@ -18,7 +23,10 @@ const isAuthenticated = (req, res, next) => {
       res.redirect('/');
     }
 };
-mongoose.connect(`mongodb://localhost:27017/myblog`);
+
+mongoose.connect(MONGODB_URI)
+.then(() => console.log("Connected to MongoDB"))
+.catch((err) => console.error("Error connecting to MongoDB:", err));
 
 const SignUpSchema = new mongoose.Schema({
     fname: String,
@@ -33,8 +41,15 @@ const BlogSchema = new mongoose.Schema({
     date: String,
     content: String,
 });
-const Users = new mongoose.model("SignUp", SignUpSchema);
-const Blogs = new mongoose.model("Blogs", BlogSchema);
+const Users = mongoose.model("SignUp", SignUpSchema);
+const Blogs = mongoose.model("Blogs", BlogSchema);
+
+// Rest of your code...
+
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/pages/loginPage.html");
+});
+
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/pages/loginPage.html");
@@ -47,7 +62,7 @@ app.get("/home", isAuthenticated, async (req, res) => {
         array.reverse();
         let posts = "";
         array.forEach((element) => {
-            posts += `<article class="flex max-w-xl flex-col items-start justify-between" style="border: 2px solid black; padding: 10%; border-radius: 5%; transition: transform 0.3s ease-in-out;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            posts += `<article class="flex max-w-xl flex-col items-start justify-between" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  padding: 10%; border-radius: 5%; transition: transform 0.3s ease-in-out;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
             <div class="flex items-center gap-x-4 text-xs">
               <time datetime="2020-03-16" class="text-gray-500">${element.date} ${element.time}</time>
             </div>
@@ -185,6 +200,8 @@ app.post("/createBlog",isAuthenticated, async (req, res) => {
         res.send("Could not add blog");
     }
 });
+
+
 
 app.listen(3001);
 console.log("Server Started with port 3001");
