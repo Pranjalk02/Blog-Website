@@ -6,9 +6,9 @@ const dotenv = require("dotenv");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://{your_username}:{your_password}@cluster0.7xtwenm.mongodb.net/";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://<username>:<password>@cluster0.7xtwenm.mongodb.net/";
 
-
+app.use('/images',express.static('images'));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: 'your-secret-key',
